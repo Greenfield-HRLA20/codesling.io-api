@@ -1,8 +1,5 @@
 import db from '../../config/database';
-import {
-  success,
-  error
-} from '../log';
+import { success, error } from '../log';
 
 export const globalQueryHelper = async (payload, query, name) => {
   try {
@@ -26,12 +23,12 @@ export const globalController = (query, name) => {
       payload = req.params;
     }
     try {
-      const { rows } = query(payload, url);
+      const { rows } = await query(payload, url);
       success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
       return res.status(200).send(rows);
     } catch (err) {
       error(`${name} - error= ${err}`);
       throw new Error(err);
     }
-  }
+  };
 };

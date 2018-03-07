@@ -4,4 +4,4 @@ export const addChallengeHelper = ({ title, content, difficulty }) => {
     VALUES ('${title}', '${content}', ${difficulty}, 0)
     RETURNING id, title, content, difficulty
   `;
-}
+};
