@@ -4,7 +4,7 @@ import {
   createChallengeTable,
   createHistoryTable,
   createTestCaseTable,
-  // createSabotageTable,
+  createSabotageTable,
   createMessageTable,
   createFriendTable,
   createUsersChallengesTable,
@@ -13,11 +13,11 @@ import {
   dropChallengeTable,
   dropHistoryTable,
   dropTestCaseTable,
-  // dropSabotageTable,
+  dropSabotageTable,
   dropMessageTable,
   dropFriendTable,
   dropUsersChallengesTable,
-  useDatabase,
+  useDatabase
 } from '../../lib/SQL';
 
 const setup = async () => {
@@ -29,7 +29,7 @@ const setup = async () => {
   await dropMessageTable();
   await dropUserTable();
   await dropChallengeTable();
-  // await dropSabotageTable();
+  await dropSabotageTable();
   await createDatabase();
   await createUserTable();
   await createChallengeTable();
@@ -37,7 +37,7 @@ const setup = async () => {
   await createTestCaseTable();
   await createFriendTable();
   await createUsersChallengesTable();
-  // await createSabotageTable();
+  await createSabotageTable();
   await createMessageTable();
   process.exit();
 };

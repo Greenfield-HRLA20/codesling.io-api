@@ -1,10 +1,5 @@
-import {
-  addTestCaseQuery
-} from './testCasesQuery';
-import {
-  success,
-  error
-} from '../../lib/log';
+import { addTestCaseQuery } from './testCasesQuery';
+import { success, error } from '../../lib/log';
 
 export const addTestCaseController = async (req, res) => {
   try {

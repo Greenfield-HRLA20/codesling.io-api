@@ -1,18 +1,11 @@
-import {
-  addChallengeQuery
-} from './challengeQueries';
-import {
-  addUserChallengeQuery
-} from '../usersChallenges/usersChallengesQueries';
-import {
-  success,
-  error
-} from '../../lib/log';
+import { addChallengeQuery } from './challengeQueries';
+import { addUserChallengeQuery } from '../usersChallenges/usersChallengesQueries';
+import { success, error } from '../../lib/log';
 
 export const addChallengeController = async (req, res) => {
   try {
     /**
-     * 
+     *
      */
     const { rows } = await addChallengeQuery(req.body);
     success('addChallengeController - successfully added challenge ', rows[0]);
@@ -24,4 +17,3 @@ export const addChallengeController = async (req, res) => {
     error('addChallengeController - error= ', error);
   }
 };
-
