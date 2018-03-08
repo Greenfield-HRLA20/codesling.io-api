@@ -1,14 +1,14 @@
-import express from 'express';
+import express from "express";
 
 import {
   fetchAllUserController,
   fetchAUserByEmailController
-} from './userControllers';
+} from "./userControllers";
 
 const router = express.Router();
 
-router.route('/fetchAllUsers').get(fetchAllUserController);
+router.route("/fetchAllUsers").get(fetchAllUserController);
 
-router.route('/fetchUserByEmail').get(fetchAUserByEmailController);
+router.route("/fetchUserByEmail").get(fetchAUserByEmailController);
 
 export default router;
