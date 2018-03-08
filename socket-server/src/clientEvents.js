@@ -6,7 +6,7 @@ import {
   serverChanged,
   serverLeave,
   serverRun,
-  serverMessage,
+  serverMessage
 } from './serverEvents';
 
 /**
@@ -21,12 +21,14 @@ import {
  *
  */
 const clientReady = ({ io, client, room }, payload) => {
+  console.log('payload in clientReady', payload);
   success('client ready heard');
   serverInitialState({ io, client, room }, payload);
 };
 
 const clientUpdate = ({ io, client, room }, payload) => {
   const { text, email } = payload;
+  console.log('payload in clientUpdate', payload);
   success('client update heard. payload.text = ', payload);
   room.set('text', text);
   room.set('email', email);
@@ -47,6 +49,10 @@ const clientRun = async ({ io, room }, payload) => {
     const { data } = await axios.post(`${url}/submit-code`, { code: text });
     const stdout = data;
     serverRun({ io, room }, { stdout, email });
+    let verify = data.split('\n');
+    if (verify[verify.length - 1] === 'true') {
+      serverLeave({ io, room });
+    }
   } catch (e) {
     success('error posting to coderunner service from socket server. e = ', e);
   }
@@ -68,7 +74,7 @@ const clientEmitters = {
   'client.update': clientUpdate,
   'client.disconnect': clientDisconnect,
   'client.run': clientRun,
-  'client.message': clientMessage,
+  'client.message': clientMessage
 };
 
 export default clientEmitters;

@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 app.post('/submit-code', (req, res) => {
   tmp.file({ postfix: '.js' }, (errCreatingTmpFile, path) => {
-    writeFile(path, req.body.code, (errWritingFile) => {
+    writeFile(path, req.body.code, errWritingFile => {
       if (errWritingFile) {
         res.send(errWritingFile);
       } else {
