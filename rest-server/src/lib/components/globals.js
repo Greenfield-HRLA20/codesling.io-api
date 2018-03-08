@@ -1,5 +1,5 @@
-import db from '../../config/database';
-import { success, error } from '../log';
+import db from "../../config/database";
+import { success, error } from "../log";
 
 export const globalQueryHelper = async (payload, query, name) => {
   try {
@@ -9,15 +9,15 @@ export const globalQueryHelper = async (payload, query, name) => {
     return data;
   } catch (err) {
     error(`${name} - error= ', err`);
-    throw new Error(err);
   }
 };
 
 export const globalController = (query, name) => {
   return async (req, res) => {
+    console.log("in async");
     const { url, method } = req;
     let payload;
-    if (method === 'POST' || method === 'PUT') {
+    if (method === "POST" || method === "PUT") {
       payload = req.body;
     } else {
       payload = req.params;
@@ -28,7 +28,6 @@ export const globalController = (query, name) => {
       return res.status(200).send(rows);
     } catch (err) {
       error(`${name} - error= ${err}`);
-      throw new Error(err);
     }
   };
 };
