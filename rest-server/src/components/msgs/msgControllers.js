@@ -1,9 +1,9 @@
-import { globalController } from '../../lib/components/globals';
-import { msgQuery, fetchMessageQuery } from './msgQueries';
-import { fetchUserQuery } from '../users/userQueries';
-import { success, error } from '../../lib/log';
+import { globalController } from "../../lib/components/globals";
+import { msgQuery, fetchMessageQuery } from "./msgQueries";
+import { fetchUserQuery } from "../users/userQueries";
+import { success, error } from "../../lib/log";
 
-export const msgController = globalController(msgQuery, 'msgController');
+export const msgController = globalController(msgQuery, "msgController");
 
 export const fetchMessagesController = async (req, res) => {
   try {
@@ -14,6 +14,6 @@ export const fetchMessagesController = async (req, res) => {
     }
     return res.status(200).send(rows);
   } catch (err) {
-    error('error fetching messages ', err);
+    error("error fetching messages ", err);
   }
 };
