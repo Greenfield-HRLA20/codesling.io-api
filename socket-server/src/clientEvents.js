@@ -48,9 +48,11 @@ const clientRun = async ({ io, room }, payload) => {
   try {
     const { data } = await axios.post(`${url}/submit-code`, { code: text });
     const stdout = data;
-    //data is the actual output of their console..?
-    console.log('data', data);
     serverRun({ io, room }, { stdout, email });
+    let verify = data.split('\n');
+    if (verify[verify.length - 1] === 'true') {
+      serverLeave({ io, room });
+    }
   } catch (e) {
     success('error posting to coderunner service from socket server. e = ', e);
   }
