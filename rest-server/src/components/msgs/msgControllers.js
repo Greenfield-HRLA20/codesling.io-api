@@ -10,7 +10,6 @@ export const fetchMessagesController = async (req, res) => {
     const { rows } = await fetchMessageQuery(req.params);
     for (let row of rows) {
       let user = await fetchUserQuery(row.receiver_id);
-      console.log('this is the user', user.rows);
       row.receiver = user.rows;
     }
     return res.status(200).send(rows);

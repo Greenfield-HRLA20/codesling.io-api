@@ -2,19 +2,26 @@ import express from 'express';
 import validate from 'express-validation';
 import passport from 'passport';
 
-import {
-  signUpController,
-  loginController
-} from './authControllers';
+import { signUpController, loginController } from './authControllers';
 import formValidation from '../../middleware/validation/request-validation';
 import '../../middleware/validation/passport';
 
 const router = express.Router();
 
-router.route('/signup')
-  .post(validate(formValidation.signUp), signUpController);
+router.route('/signup').post(validate(formValidation.signUp), signUpController);
 
-router.route('/login')
-  .post(validate(formValidation.login), passport.authenticate('local', { session: false}), loginController);
+router
+  .route('/login')
+  .post(
+    validate(formValidation.login),
+    passport.authenticate('local', { session: false }),
+    loginController
+  );
+
+router.route('/logout').get((req, res) => {
+  console.log('req.logout', req.logout);
+  req.logout();
+  res.status(200).send('loggedout');
+});
 
 export default router;

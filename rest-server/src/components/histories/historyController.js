@@ -28,7 +28,6 @@ export const fetchHistoryController = async (req, res) => {
       let user = await fetchUserQuery(row.challenger_id);
       row.receiver = user;
     }
-    console.log('rows from fetchHistoryController', rows);
     return res.status(200).send(rows);
   } catch (err) {
     error('error fetching messages ', err);
