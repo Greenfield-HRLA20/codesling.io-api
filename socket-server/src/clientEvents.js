@@ -58,8 +58,8 @@ const clientRun = async ({ io, room }, payload) => {
 
 const clientMessage = async ({ io, room }, payload) => {
   const { value, email } = payload;
-  const message = `${email} : ${value}`;
-  serverMessage({ io, room }, { message, email });
+  // const message = `${email} : ${value}`;
+  serverMessage({ io, room }, payload);
   success('client message heard');
   // const url = process.env.REST_SERVER_URL;
   // try {
