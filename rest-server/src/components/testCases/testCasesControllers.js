@@ -1,12 +1,12 @@
-import { addTestCaseQuery } from './testCasesQuery';
-import { success, error } from '../../lib/log';
+import { addTestCaseQuery } from "./testCasesQuery";
+import { success, error } from "../../lib/log";
 
 export const addTestCaseController = async (req, res) => {
   try {
     const data = await addTestCaseQuery(req.body);
-    success('addTestCaseController - successfully added test case ', data);
+    success("addTestCaseController - successfully added test case ", data);
     return res.status(200).send(data);
   } catch (err) {
-    error('addTestCaseController - error= ', err);
+    error("addTestCaseController - error= ", err);
   }
 };
