@@ -5,7 +5,6 @@ export const globalQueryHelper = async (payload, query, name) => {
   try {
     const queryString = query(payload);
     const data = await db.queryAsync(queryString);
-    console.log(queryString, data);
     success(`${name} - successfully retrived data ${JSON.stringify(data)}`);
     return data;
   } catch (err) {
