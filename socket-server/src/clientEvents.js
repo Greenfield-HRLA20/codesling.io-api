@@ -57,15 +57,18 @@ const clientRun = async ({ io, room }, payload) => {
 };
 
 const clientMessage = async ({ io, room }, payload) => {
+  const { value, email } = payload;
+  const message = `${email} : ${value}`;
+  serverMessage({ io, room }, { message, email });
   success('client message heard');
-  const url = process.env.REST_SERVER_URL;
-  try {
-    const { data } = await axios.post(`${url}/messages/`, payload);
-    console.log('this is the payload', payload);
-    serverMessage({ io, room }, data);
-  } catch (e) {
-    success('error saving message to the database. e = ', e);
-  }
+  // const url = process.env.REST_SERVER_URL;
+  // try {
+  //   const { data } = await axios.post(`${url}/messages/`, payload);
+  //   console.log('this is the payload', payload);
+  //   serverMessage({ io, room }, data);
+  // } catch (e) {
+  //   success('error saving message to the database. e = ', e);
+  // }
 };
 
 const clientRecordHistory = async ({ io, room }, payload) => {
