@@ -14,7 +14,6 @@ export const globalQueryHelper = async (payload, query, name) => {
 
 export const globalController = (query, name) => {
   return async (req, res) => {
-    console.log("in async");
     const { url, method } = req;
     let payload;
     if (method === "POST" || method === "PUT") {
@@ -22,6 +21,8 @@ export const globalController = (query, name) => {
     } else {
       payload = req.params;
     }
+    console.log(query, name);
+    console.log(payload, url, method);
     try {
       const { rows } = await query(payload, url);
       success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
