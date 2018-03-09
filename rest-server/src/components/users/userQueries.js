@@ -1,5 +1,9 @@
 import db from '../../config/database';
-import { fetchAllUserHelper, fetchUserHelper } from './userSQLHelpers';
+import {
+  fetchAllUserHelper,
+  fetchUserHelper,
+  fetchAUserByEmailHelper
+} from './userSQLHelpers';
 import { success, error } from '../../lib/log';
 
 export const fetchAllUserQuery = async () => {
@@ -22,5 +26,17 @@ export const fetchUserQuery = async payload => {
     return data;
   } catch (err) {
     error('fetchUserQuery - error= ', err);
+  }
+};
+
+export const fetchUserByEmailQuery = async payload => {
+  try {
+    const queryString = fetchAUserByEmailHelper(payload);
+    const { rows } = await db.queryAsync(queryString);
+    success('fetchUserByEmailQuery - successfully fetched all users ', rows);
+    const { id } = rows[0];
+    return { id };
+  } catch (err) {
+    error('fetchUserByEmailQuery - error= ', err);
   }
 };
