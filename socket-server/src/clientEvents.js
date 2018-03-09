@@ -21,7 +21,7 @@ import {
  *
  */
 const clientReady = ({ io, client, room }, payload) => {
-  console.log('payload in clientReady', payload);
+  // console.log('payload in clientReady', payload);
   success('client ready heard');
   serverInitialState({ io, client, room }, payload);
 };
@@ -61,6 +61,7 @@ const clientMessage = async ({ io, room }, payload) => {
   const url = process.env.REST_SERVER_URL;
   try {
     const { data } = await axios.post(`${url}/messages/`, payload);
+    console.log('this is the payload', payload);
     serverMessage({ io, room }, data);
   } catch (e) {
     success('error saving message to the database. e = ', e);
