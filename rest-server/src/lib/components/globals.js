@@ -21,6 +21,8 @@ export const globalController = (query, name) => {
     } else {
       payload = req.params;
     }
+    console.log(query, name);
+    console.log(payload, url, method);
     try {
       const { rows } = await query(payload, url);
       success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
